@@ -1,0 +1,52 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<f:view>
+
+	<h:body>
+
+		<div class="container"
+			style="display: block; width: 50dvh; margin: 50px auto; background-color: white /* #080808cc */; background-repeat: no-repeat; background-size: cover; background-position: center; background-blend-mode: multiply; padding: 20px; border: 1px solid rgba(70, 53, 0, 0.555); border-radius: 5px; box-shadow: 0 0 10px rgb(70, 53, 0); gap: 4rem;">
+			<div class="header" style="text-align: center;">
+				<h1>Select Option</h1>
+			</div>
+
+			<h:form
+				style="display: flex; justify-content: space-between; padding: 20px">
+
+
+				<div class="header" style="text-align: center">
+					<h1>Create Question</h1>
+				</div>
+
+				<div class="inputs"
+					style="width: 30%; display: flex; flex-direction: column;">
+					<div class="username" style="margin-bottom: 10px;">
+						<span>Name:</span>
+						<h:inputText id="qDescription" value="#{LoginBean.userName}"
+							style="margin-top: 5px;"></h:inputText>
+					</div>
+					<div class="password">
+						<span>Password:</span>
+						<h:inputSecret id="password" value="#{LoginBean.password}"
+							style="margin-top: 5px;"></h:inputSecret>
+					</div>
+				</div>
+
+
+				<h:commandButton value="Back" immediate="true"
+					action="#{loginBean.moveToMain}" style="margin: 15px; height: 35px" />
+
+
+
+
+			</h:form>
+		</div>
+
+	</h:body>
+</f:view>
+
+</html>

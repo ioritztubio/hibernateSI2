@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf17023883477740" configfile="/LoginJSF/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="Main.xhtml" x="338" y="370" id="pf17023885418861" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf17023885418862 pf17023885418873 pf17030032064614" inlinks="pf17024840146430 pf17024840146431 pf17030032064615" path="/Main.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="CreateQuestions.xhtml" x="122" y="178" id="pf17023885418874" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf17024840146430" inlinks="pf17023885418862" path="/CreateQuestions.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="QueryQuestions.xhtml" x="122" y="562" id="pf17023885418885" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf17024840146431" inlinks="pf17023885418873" path="/QueryQuestions.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Login.xhtml" x="72" y="384" id="pf17029954522880" outlinks="pf17030032064615" inlinks="pf17030032064614" path="/Login.xhtml"/>
+  <links id="pf17023885418862" target="pf17023885418874" source="pf17023885418861" outcome="CreateQuestion"/>
+  <links id="pf17023885418873" target="pf17023885418885" source="pf17023885418861" outcome="QueryQuestion"/>
+  <links id="pf17024840146430" target="pf17023885418861" source="pf17023885418874" outcome="back"/>
+  <links id="pf17024840146431" target="pf17023885418861" source="pf17023885418885" outcome="back"/>
+  <links id="pf17030032064615" target="pf17023885418861" source="pf17029954522880" outcome="Main"/>
+  <links id="pf17030032064614" target="pf17029954522880" source="pf17023885418861" outcome="Login"/>
+</pageflow:Pageflow>

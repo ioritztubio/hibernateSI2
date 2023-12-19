@@ -1,0 +1,87 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Query Questions</title>
+		<h:outputStylesheet library="css" name="queryquestions.css"></h:outputStylesheet>
+	</h:head>
+	<h:body>
+
+		<div class="container"
+			style="display: block; width: 100dvh; margin: 50px auto; background-color: white /* #080808cc */; background-repeat: no-repeat; background-size: cover; background-position: center; background-blend-mode: multiply; padding: 20px; border: 1px solid rgba(70, 53, 0, 0.555); border-radius: 5px; box-shadow: 0 0 10px rgb(70, 53, 0); gap: 4rem;">
+
+			<h:form id="myForm">
+				<div class="header" style="text-align: center">
+					<h1>Query Questions</h1>
+				</div>
+
+				<div class="event"
+					style="margin: 20px; display: flex; justify-content: space-between;">
+					<div class="calendar">
+						<span>Calendar</span> <br></br>
+						<p:calendar value="#{CalendarBean.selectedDate}" id="calendar"
+							navigator="false" mode="inline">
+							<p:ajax event="dateSelect"
+								listener="#{CalendarBean.onDateSelect}" update="eventTable">
+
+							</p:ajax>
+						</p:calendar>
+
+
+					</div>
+					<div class="eventTable">
+						<p:dataTable var="event" id="eventTable"
+							value="#{CalendarBean.eventList}" selectionMode="single"
+							selection="#{QueryQuestionsBean.selectedEvent}" border="1"
+							rowKey="#{event.eventNumber}" style="width: 50dvh">
+							<p:column headerText="ID">
+								<h:outputText value="#{event.eventNumber}" />
+							</p:column>
+							<p:column headerText="Team1 vs Team2">
+								<h:outputText value="#{event.description}" />
+							</p:column>
+
+							<p:ajax event="rowSelect"
+								listener="#{QueryQuestionsBean.onEventSelect}"
+								update=":myForm:questionTable2"></p:ajax>
+						</p:dataTable>
+					</div>
+
+				</div>
+
+				<div class="question" style="justify-content: center;">
+					<div class="questionTable" style="padding: 15px">
+						<p:dataTable value="#{QueryQuestionsBean.questions}" var="item"
+							id="questionTable2" style="width: 50dvh">
+							<p:column headerText="ID">
+								<h:outputText value="#{item.questionNumber}" />
+							</p:column>
+							<p:column headerText="Question Name">
+								<h:outputText value="#{item.question}" />
+							</p:column>
+						</p:dataTable>
+					</div>
+				</div>
+
+
+
+				<div class="buttons" style="justify-content: space-between">
+						<p:commandButton value="Back" immediate="true" action="back"></p:commandButton>
+				</div>
+			</h:form>
+
+
+		</div>
+
+	</h:body>
+
+
+
+</f:view>
+
+</html>
