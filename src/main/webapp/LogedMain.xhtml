@@ -1,0 +1,61 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Bets2023-24-TubioIoritz</title>
+
+	</h:head>
+	<style>
+.button {
+	padding: 10px 20px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+.button:hover {
+	background-color: #45a049;
+}
+</style>
+
+	<h:body>
+
+		<div class="container"
+			style="display: block; width: 50dvh; margin: 50px auto; background-color: white /* #080808cc */; background-repeat: no-repeat; background-size: cover; background-position: center; background-blend-mode: multiply; padding: 20px; border: 1px solid rgba(70, 53, 0, 0.555); border-radius: 5px; box-shadow: 0 0 10px rgb(70, 53, 0); gap: 4rem;">
+			<div class="header" style="text-align: center;">
+				<h1>Bets Hibernate</h1>
+			</div>
+
+			<h:form
+				style="display: flex; justify-content:center; flex-direction: column">
+
+				<div
+					style="display: flex; justify-content: space-between; padding: 20px">
+
+					<p:commandButton style="margin:15px; padding:3px"
+						value="Query Questions" immediate="false"
+						action="#{LogedMainBean.moveToQuery}" />
+
+
+					<p:commandButton style="margin:15px; padding:3px" value="Logout"
+						immediate="false" action="#{LoginBean.logOut}" />
+				</div>
+			</h:form>
+		</div>
+
+	</h:body>
+</f:view>
+
+</html>

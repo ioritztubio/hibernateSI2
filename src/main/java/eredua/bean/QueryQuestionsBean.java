@@ -4,7 +4,9 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.component.behavior.AjaxBehavior;
+import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.primefaces.event.SelectEvent;
@@ -51,6 +53,7 @@ public class QueryQuestionsBean {
 
 	public void onEventSelect() {
 		this.questions = selectedEvent.getQuestions();
+		
 
 	}
 

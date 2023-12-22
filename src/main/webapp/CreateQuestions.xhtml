@@ -10,6 +10,25 @@
 		<title>Query Questions</title>
 		<h:outputStylesheet library="css" name="queryquestions.css"></h:outputStylesheet>
 	</h:head>
+	<style>
+.button {
+	padding: 10px 20px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+.button:hover {
+	background-color: #45a049;
+}
+</style>
 	<h:body>
 
 		<div class="container"
@@ -23,7 +42,7 @@
 				<div class="event"
 					style="margin: 20px; display: flex; justify-content: space-between;">
 					<div class="calendar">
-						<span>Calendar</span> <br></br>
+						
 						<p:calendar value="#{CalendarBean.selectedDate}" id="calendar"
 							navigator="false" mode="inline">
 							<p:ajax event="dateSelect"
@@ -33,23 +52,22 @@
 						</p:calendar>
 
 						<div class="questionSettings">
-							<h3>Define your new question</h3>
+							<h3 style="font-family: Arial, sans-serif;">Define your new question</h3>
 							<div class="questionDescription">
-								<span>Question Description: </span>
+								<span style="font-family: Arial, sans-serif;">Question Description: </span>
 								<h:inputText id="qDescription"
 									value="#{CreateQuestionBean.questionDescription}"></h:inputText>
 							</div>
 							<br></br>
 							<div class="minimumBet">
-								<span>Minimum Bet: </span>
+								<span style="font-family: Arial, sans-serif;">Minimum Bet: </span>
 								<h:inputText id="minBet"
 									value="#{CreateQuestionBean.minimumBet}"></h:inputText>
 							</div>
 							<br></br>
-							<h:commandButton class="button" value="Onartu" style=""
-								action="#{CreateQuestionBean.createNewQuestion}"
-								update="eventTable">
-							</h:commandButton>
+
+
+
 						</div>
 
 					</div>
@@ -57,7 +75,7 @@
 						<p:dataTable var="event" id="eventTable"
 							value="#{CalendarBean.eventList}" selectionMode="single"
 							selection="#{CreateQuestionBean.selectedEvent}" border="1"
-							rowKey="#{event.eventNumber}" style="width: 50dvh">
+							rowKey="#{event.eventNumber}" style="width: 50dvh" emptyMessage="No events avaliable today.">
 							<p:column headerText="ID">
 								<h:outputText value="#{event.eventNumber}" />
 							</p:column>
@@ -80,9 +98,22 @@
 
 
 
-				<div class="buttons" style="justify-content: space-between">
-					<p:commandButton value="Back" immediate="true" action="back"></p:commandButton>
+				<div style="display: flex; justify-content: center;">
+					<div class="buttons"
+						style="width: 70%; heigth:35.16px;display: flex; justify-content: space-between">
+						<p:commandButton value="Back" immediate="false" action="LogedAdminMain"></p:commandButton>
+
+						<h:messages id="mezuak" style=" list-style-type: none;  font-family:Arial, sans-serif;color: #{CreateQuestionBean.colorMessages};"></h:messages>
+						
+						<p:commandButton id="onartu" value="Onartu" style=""
+							action="#{CreateQuestionBean.createNewQuestion}"
+							update=":myForm:mezuak eventTable ">
+						</p:commandButton>
+
+					</div>
 				</div>
+
+
 			</h:form>
 
 

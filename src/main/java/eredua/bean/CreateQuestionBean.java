@@ -23,6 +23,16 @@ public class CreateQuestionBean {
 	private domain.Event selectedEvent;
 	private domain.Question question;
 	private String questionDescription;
+	private String colorMessages;
+
+	public String getColorMessages() {
+		return colorMessages;
+	}
+
+	public void setColorMessages(String colorMessages) {
+		this.colorMessages = colorMessages;
+	}
+
 	private float minimumBet;
 
 	public CreateQuestionBean() {
@@ -37,8 +47,6 @@ public class CreateQuestionBean {
 	public void setSelectedEvent(domain.Event selectedEvent) {
 		this.selectedEvent = selectedEvent;
 	}
-
-	
 
 	public List<domain.Question> getQuestions() {
 		return questions;
@@ -77,36 +85,49 @@ public class CreateQuestionBean {
 	public void createNewQuestion() {
 
 		if (selectedEvent == null) {
+			System.out.println(FacesContext.getCurrentInstance());
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error: You must select an Event."));
+			this.setColorMessages("red");
+
 		} else if (this.questionDescription.isEmpty()) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error: You must type a description."));
+			this.setColorMessages("red");
+
 		} else if (this.minimumBet <= 0) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Error: Minimum bet should be higher than 0."));
+			this.setColorMessages("red");
+
 		} else {
 			BLFacade facadeBL = FacadeBean.getBusinessLogic();
 			try {
 				int i = 0;
 				List<Question> evQuestions = selectedEvent.getQuestions();
 				boolean create = true;
-				while(i<evQuestions.size() && create){
-					if(evQuestions.get(i).getQuestion().equals(this.questionDescription)) {
+				while (i < evQuestions.size() && create) {
+					if (evQuestions.get(i).getQuestion().equals(this.questionDescription)) {
 						create = false;
 					}
 					i++;
 				}
-				if(create)
-				facadeBL.createQuestion(this.selectedEvent, this.questionDescription, this.minimumBet);
-				else
-					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error: Question is already created."));
+				if (create)
+					facadeBL.createQuestion(this.selectedEvent, this.questionDescription, this.minimumBet);
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Question created successfully!"));
+				this.setColorMessages("green");
+
 			} catch (EventFinished e) {
 				e.printStackTrace();
 			} catch (QuestionAlreadyExist e) {
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage("Error: Question is already created."));
+				this.setColorMessages("red");
+
 				e.printStackTrace();
 			}
 
 		}
 	}
+
 	public void onEventSelect() {
 		this.questions = selectedEvent.getQuestions();
 

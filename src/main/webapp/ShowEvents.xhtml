@@ -1,0 +1,62 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Query Questions</title>
+		<h:outputStylesheet library="css" name="queryquestions.css"></h:outputStylesheet>
+	</h:head>
+	<h:body>
+
+		<div class="container"
+			style="display: block; width: 60dvh; margin: 50px auto; background-color: #white /* #080808cc */; background-repeat: no-repeat; background-size: cover; background-position: center; background-blend-mode: multiply; padding: 20px; border: 1px solid rgba(70, 53, 0, 0.555); border-radius: 5px; box-shadow: 0 0 10px rgb(70, 53, 0); gap: 4rem;">
+
+			<h:form id="myForm">
+				<div class="header" style="text-align: center">
+					<h1>Show Events</h1>
+				</div>
+
+				<div class="event"
+					style="margin: 20px; display: flex; justify-content: space-between;">
+					<div class="calendar"
+						style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+						<div style="padding: 15px;">
+							<span>Event Date:</span>
+							<p:calendar value="#{ShowEventsBean.selectedDate}" id="calendar"
+								navigator="false" mode="inline">
+							</p:calendar>
+
+						</div>
+
+					</div>
+
+
+				</div>
+
+
+				<br></br>
+
+				<div style="display: flex; justify-content: center">
+
+					<div class="buttons" style="justify-content: space-between">
+
+						<p:commandButton value="Show Events" immediate="false"
+							action="#{ShowEventsBean.onDateSelect}"></p:commandButton>
+					</div>
+				</div>
+			</h:form>
+
+
+		</div>
+
+	</h:body>
+
+
+
+</f:view>
+
+</html>

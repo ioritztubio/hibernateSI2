@@ -13,7 +13,7 @@
 	<h:body>
 
 		<div class="container"
-			style="display: block; width: 100dvh; margin: 50px auto; background-color: white /* #080808cc */; background-repeat: no-repeat; background-size: cover; background-position: center; background-blend-mode: multiply; padding: 20px; border: 1px solid rgba(70, 53, 0, 0.555); border-radius: 5px; box-shadow: 0 0 10px rgb(70, 53, 0); gap: 4rem;">
+			style="display: block; width: 120dvh; margin: 50px auto; background-color: #white /* #080808cc */; background-repeat: no-repeat; background-size: cover; background-position: center; background-blend-mode: multiply; padding: 20px; border: 1px solid rgba(70, 53, 0, 0.555); border-radius: 5px; box-shadow: 0 0 10px rgb(70, 53, 0); gap: 4rem;">
 
 			<h:form id="myForm">
 				<div class="header" style="text-align: center">
@@ -22,56 +22,76 @@
 
 				<div class="event"
 					style="margin: 20px; display: flex; justify-content: space-between;">
-					<div class="calendar">
-						<span>Calendar</span> <br></br>
-						<p:calendar value="#{CalendarBean.selectedDate}" id="calendar"
-							navigator="false" mode="inline">
-							<p:ajax event="dateSelect"
-								listener="#{CalendarBean.onDateSelect}" update="eventTable">
+					<div class="calendar"
+						style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+						<div style="padding: 15px;">
+							<p:calendar value="#{CalendarBean.selectedDate}" id="calendar"
+								navigator="false" mode="inline">
+								<p:ajax event="dateSelect"
+									listener="#{CalendarBean.onDateSelect}" update="eventTable">
 
-							</p:ajax>
-						</p:calendar>
+								</p:ajax>
+							</p:calendar>
+
+						</div>
+						<div class="question" style="justify-content: center;">
+							<div class="questionTable" style="padding: 15px">
+								<p:dataTable value="#{QueryQuestionsBean.questions}" var="item"
+									id="questionTable2" style="width: 50dvh"
+									emptyMessage="This event has no questions already.">
+									<p:column headerText="ID">
+										<h:outputText value="#{item.questionNumber}" />
+									</p:column>
+									<p:column headerText="Question Name">
+										<h:outputText value="#{item.question}" />
+									</p:column>
+								</p:dataTable>
+							</div>
+						</div>
+
 
 
 					</div>
-					<div class="eventTable">
-						<p:dataTable var="event" id="eventTable"
-							value="#{CalendarBean.eventList}" selectionMode="single"
-							selection="#{QueryQuestionsBean.selectedEvent}" border="1"
-							rowKey="#{event.eventNumber}" style="width: 50dvh">
-							<p:column headerText="ID">
-								<h:outputText value="#{event.eventNumber}" />
-							</p:column>
-							<p:column headerText="Team1 vs Team2">
-								<h:outputText value="#{event.description}" />
-							</p:column>
 
-							<p:ajax event="rowSelect"
-								listener="#{QueryQuestionsBean.onEventSelect}"
-								update=":myForm:questionTable2"></p:ajax>
-						</p:dataTable>
+
+					<div class="event" style="justify-content: center;">
+						<div class="eventTable" style="padding: 15px">
+							<p:dataTable var="event" id="eventTable"
+								value="#{CalendarBean.eventList}" selectionMode="single"
+								selection="#{QueryQuestionsBean.selectedEvent}" border="1"
+								rowKey="#{event.eventNumber}" style="width: 50dvh"
+								emptyMessage="No events avaliable today.">
+								<p:column headerText="ID">
+									<h:outputText value="#{event.eventNumber}" />
+								</p:column>
+								<p:column headerText="Team1 vs Team2">
+									<h:outputText value="#{event.description}" />
+								</p:column>
+
+								<p:ajax event="rowSelect"
+									listener="#{QueryQuestionsBean.onEventSelect}"
+									update=":myForm:questionTable2 mezua"></p:ajax>
+							</p:dataTable>
+						</div>
 					</div>
+
+
+
 
 				</div>
 
-				<div class="question" style="justify-content: center;">
-					<div class="questionTable" style="padding: 15px">
-						<p:dataTable value="#{QueryQuestionsBean.questions}" var="item"
-							id="questionTable2" style="width: 50dvh">
-							<p:column headerText="ID">
-								<h:outputText value="#{item.questionNumber}" />
-							</p:column>
-							<p:column headerText="Question Name">
-								<h:outputText value="#{item.question}" />
-							</p:column>
-						</p:dataTable>
+
+				<br></br>
+
+				<div style="display: flex; justify-content: center">
+
+					<div class="buttons" style="justify-content: space-between">
+						<h:messages id="mezuak"
+							style=" list-style-type: none;  font-family:Arial, sans-serif;color: #{CreateQuestionBean.colorMessages};"></h:messages>
+
+						<p:commandButton value="Back" immediate="true"
+							action="#{LoginBean.logStatus}"></p:commandButton>
 					</div>
-				</div>
-
-
-
-				<div class="buttons" style="justify-content: space-between">
-						<p:commandButton value="Back" immediate="true" action="back"></p:commandButton>
 				</div>
 			</h:form>
 

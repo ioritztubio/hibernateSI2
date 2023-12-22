@@ -1,0 +1,103 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Create Events</title>
+
+	</h:head>
+	<style>
+.button {
+	padding: 10px 20px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+.button:hover {
+	background-color: #45a049;
+}
+</style>
+	<h:body>
+
+		<div class="container"
+			style="display: block; width: 100dvh; margin: 50px auto; background-color: white /* #080808cc */; background-repeat: no-repeat; background-size: cover; background-position: center; background-blend-mode: multiply; padding: 20px; border: 1px solid rgba(70, 53, 0, 0.555); border-radius: 5px; box-shadow: 0 0 10px rgb(70, 53, 0); gap: 4rem;">
+
+			<h:form id="myForm">
+				<div class="header" style="text-align: center">
+					<h1>Create Events</h1>
+				</div>
+				<div style="display: flex; justify-content: center;">
+
+					<div class="event"
+						style="margin: 20px; display: flex; justify-content: space-between; width: 600px">
+						<div class="calendar" style="padding: 15px">
+
+							<p:calendar value="#{CreateEventBean.selectedDate}" id="calendar"
+								navigator="false" mode="inline">
+							</p:calendar>
+
+						</div>
+						<div class="eventSettings" style="padding: 15px;">
+							<h3 style="font-family: Arial, sans-serif;">Define your new
+								Event</h3>
+							<div class="eventDescription">
+								<span style="font-family: Arial, sans-serif;">Event
+									description: </span> <br> </br>
+								<p:inputText id="qDescription"
+									value="#{CreateEventBean.eventDescription}"
+									placeholder="Real Sociedad vs Barcelona FC"></p:inputText>
+							</div>
+							<br></br>
+
+
+
+						</div>
+
+					</div>
+
+
+				</div>
+
+
+				<div style="display: flex; justify-content: center;">
+					<div class="buttons"
+						style="width: 70%; heigth: 35.16px; display: flex; justify-content: space-between">
+						<p:commandButton value="Back" immediate="false"
+							action="LogedAdminMain"></p:commandButton>
+
+						<h:messages id="mezuak"
+							style=" list-style-type: none;  font-family:Arial, sans-serif;color: #{CreateEventBean.colorMessages};"></h:messages>
+
+						<p:commandButton id="onartu" value="Onartu" style=""
+							action="#{CreateEventBean.createNewEvent}"
+							update=":myForm:mezuak">
+						</p:commandButton>
+
+					</div>
+				</div>
+
+
+			</h:form>
+
+
+		</div>
+
+	</h:body>
+
+
+
+</f:view>
+
+</html>

@@ -1,4 +1,3 @@
-
 package eredua.bean;
 
 import javax.faces.application.FacesMessage;
@@ -6,28 +5,13 @@ import javax.faces.context.FacesContext;
 
 import businessLogic.BLFacade;
 
-public class LoginBean {
+public class RegisterBean {
 	private BLFacade f;
 	private String clientName;
 	private String cPass;
 	private String admin;
 	private String colorMessages;
-	private String logStatus;
-
-	public LoginBean() {
-		this.f = FacadeBean.getBusinessLogic();
-		this.logStatus = "Main";
-
-	}
-
-	public String getLogStatus() {
-		return logStatus;
-	}
-
-	public void setLogStatus(String logStatus) {
-		this.logStatus = logStatus;
-	}
-
+	
 	public String getColorMessages() {
 		return colorMessages;
 	}
@@ -35,6 +19,8 @@ public class LoginBean {
 	public void setColorMessages(String colorMessages) {
 		this.colorMessages = colorMessages;
 	}
+
+	private boolean mode;
 
 	public String getAdmin() {
 		return admin;
@@ -53,6 +39,11 @@ public class LoginBean {
 		this.clientName = clientName;
 	}
 
+	public RegisterBean() {
+		this.f = FacadeBean.getBusinessLogic();
+
+	}
+
 	public String moveToMain() {
 		return "Main";
 	}
@@ -67,53 +58,42 @@ public class LoginBean {
 		this.cPass = cPass;
 	}
 
-	public String moveToRegister() {
-		return "Register";
-	}
-
-	public String setlogStatus(String logStatus) {
-		return this.logStatus = logStatus;
-	}
-	
-	public String logStatus() {
-		return this.logStatus;
-	}
-	
-	public String logOut() {
-		this.setlogStatus("Main");
-		return this.logStatus;
-	}
-
-	public String logUser() {
+	public String registerUser() {
 
 		if (clientName.equals(null) || clientName.equals("")) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error: Please, type your user name."));
+			this.setColorMessages("red");
 		} else if (cPass.equals(null) || cPass.equals("")) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Error: Please, type your user password."));
 			this.setColorMessages("red");
-
-		} else if (!f.isLogin(clientName)) {
+		} else if (admin.equals("select")) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("Error: This username doesn't exists already. Please, sign up."));
+					new FacesMessage("Error: Please, select your type of register."));
 			this.setColorMessages("red");
-		} else if (!f.tryLog(clientName, cPass)) {
+		} else if (f.isLogin(clientName)) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("Error: User name okay, but password incorrect."));
+					new FacesMessage("Error: This username already exists."));
 			this.setColorMessages("red");
 		} else {
+			if (admin.equals("admin")) {
+				this.mode = true;
+			} else {
+				this.mode = false;
+			}
 
-			if (f.isAdmin(clientName)) {
+			System.out.println("ASDFASDFASDFASDFASDf" + clientName + " " + cPass);
+			f.register(clientName, cPass, mode);
 
-				this.setlogStatus("LogedAdminMain");
+			System.out.println(mode);
+			if (mode) {
+				System.out.println("LogedAdminMain");
 				return "LogedAdminMain";
 			} else {
-				this.setlogStatus("LogedMain");
 				return "LogedMain";
 			}
 		}
-		return "Login";
+		return "Register";
 
 	}
-
 }

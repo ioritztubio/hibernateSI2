@@ -3,6 +3,9 @@ package businessLogic;
 //hola
 import java.util.Date;
 import java.util.ResourceBundle;
+
+import org.hibernate.cfg.Configuration;
+
 import java.util.List;
 
 import dataAccess.DataAccess;
@@ -21,7 +24,16 @@ public class BLFacadeImplementation implements BLFacade {
 
 	public BLFacadeImplementation() {
 		dbManager = new DataAccess();
-		dbManager.initializeDB();
+		Configuration config = new Configuration();
+		config.configure("hibernate.cfg.xml");
+		String hbm = config.getProperty("hibernate.hbm2ddl.auto");
+		
+		if("create".equals(hbm)) {
+			dbManager.initializeDB();
+		}else {
+			System.out.println("DB IS OPEN");
+		}
+		
 		dbManager.close();
 	}
 
@@ -98,5 +110,43 @@ public class BLFacadeImplementation implements BLFacade {
 		dbManager.initializeDB();
 		dbManager.close();
 	}
+	
+	public boolean isLogin(String u) {
+		boolean loged = dbManager.isLogin(u);
+		dbManager.close();
+		return loged;
+		
+	}
 
+	public void register(String u, String p, boolean a) {
+		dbManager.register(u, p, a);
+		dbManager.close();
+		
+	}
+	
+	public boolean isAdmin(String u) {
+		boolean isAdmin = dbManager.isAdmin(u);
+		dbManager.close();
+		return isAdmin;
+		
+		
+	}
+	
+	/**
+	 * This method verify user logs password.
+	 * @param userName
+	 * @param userPass
+	 * @return signIn (true / false)
+	 */
+	public boolean tryLog (String userName, String userPass) {
+		boolean login = dbManager.tryLog(userName, userPass);
+		dbManager.close();
+		return login;
+	}
+	
+	public boolean createEvent(String u, Date d) {
+		boolean create = dbManager.createEvent(u, d);
+		dbManager.close();
+		return create;
+	}
 }

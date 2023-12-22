@@ -35,53 +35,69 @@
 		<div class="container"
 			style="display: block; width: 60dvh; margin: 50px auto; background-color: white /* #080808cc */; background-repeat: no-repeat; background-size: cover; background-position: center; background-blend-mode: multiply; padding: 20px; border: 1px solid rgba(70, 53, 0, 0.555); border-radius: 5px; box-shadow: 0 0 10px rgb(70, 53, 0); gap: 4rem;">
 			<div class="header" style="text-align: center;">
-				<h1>Login</h1>
+				<h1>Register</h1>
 			</div>
 
 
 
-			<h:form>
-				<div class="everything" style="display: flex; justify-content: center">
-					<div class="ev2"
-						style="display: flex;flex-direction: column; width: 190px" >
+			<h:form
+				style="display: flex; justify-content:center; flex-direction: column">
 
+				<div
+					style="display: flex; flex-direction: column; justify-content: space-between; padding: 20px">
+
+					<div class="regCont"
+						style="display: flex; justify-content: space-between">
 						<div class="inputs"
 							style="width: 30%; display: flex; flex-direction: column;">
 							<div class="clientN" style="margin-bottom: 10px;">
 								<span>Name:</span>
-								<h:inputText id="qDescriptionXX" value="#{LoginBean.clientName}"
-									style="margin-top: 5px;"></h:inputText>
+								<h:inputText id="qDescriptionXX"
+									value="#{RegisterBean.clientName}" style="margin-top: 5px;"></h:inputText>
 							</div>
 							<div class="cPass">
 								<span>Password:</span>
-								<h:inputSecret id="password" value="#{LoginBean.cPass}"
+								<h:inputSecret id="password" value="#{RegisterBean.cPass}"
 									style="margin-top: 5px;"></h:inputSecret>
+
+							</div>
+						</div>
+						<div style="display: flex; align-items: center">
+							<div class="selection"
+								style="display: flex; flex-direction: column; width: 300px; align-items: center">
+								<div style="display: flex; justify-content: center">
+									<h:selectOneMenu style="height:35px"
+										value="#{RegisterBean.admin}">
+										<f:selectItem itemLabel="Select an option:" itemValue="select" />
+										<f:selectItem itemLabel="Not Admin" itemValue="notAdmin" />
+										<f:selectItem itemLabel="Admin" itemValue="admin" />
+
+									</h:selectOneMenu>
+								</div>
+
+								<div style="display: flex; justify-content: center;">
+									<h:messages id="mezua"
+										style="list-style-type: none; font-family:Arial, sans-serif;  color: #{RegisterBean.colorMessages};"></h:messages>
+								</div>
 
 							</div>
 						</div>
 
 					</div>
+
 				</div>
-				<br></br>
-				<div style="display: flex; justify-content: center;">
-					<h:messages id="mezua"
-						style="list-style-type: none; font-family:Arial, sans-serif;color: #{LoginBean.colorMessages};"></h:messages>
-				</div>
-				<br> </br>
 
 				<div
 					style="display: flex; justify-content: space-between; padding: 20px">
 
 					<p:commandButton style="margin:15px; padding:3px" value="Back"
-						immediate="false" action="#{LoginBean.moveToMain}" />
+						immediate="false" action="#{RegisterBean.moveToMain}" />
 
-					<p:commandButton style="margin:15px; padding:3px" value="Login"
-						immediate="false" action="#{LoginBean.logUser}"
-						update="mezua" />
 
 
 					<p:commandButton style="margin:15px; padding:3px" value="Register"
-						immediate="false" action="#{LoginBean.moveToRegister}" />
+						immediate="false" action="#{RegisterBean.registerUser}"
+						update="mezua" />
 				</div>
 			</h:form>
 		</div>

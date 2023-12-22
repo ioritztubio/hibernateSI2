@@ -35,26 +35,29 @@
 		<div class="container"
 			style="display: block; width: 100dvh; margin: 50px auto; background-color: white /* #080808cc */; background-repeat: no-repeat; background-size: cover; background-position: center; background-blend-mode: multiply; padding: 20px; border: 1px solid rgba(70, 53, 0, 0.555); border-radius: 5px; box-shadow: 0 0 10px rgb(70, 53, 0); gap: 4rem;">
 			<div class="header" style="text-align: center;">
-				<h1>Bets Hibernate</h1>
+				<h1>Bets Admin</h1>
 			</div>
 
-			<h:form style="display: flex; justify-content:center; flex-direction: column">
+			<h:form
+				style="display: flex; justify-content:center; flex-direction: column">
 
 				<div
 					style="display: flex; justify-content: space-between; padding: 20px">
-					
-					<p:commandButton style="margin:15px; padding:3px" value="Query Questions" immediate="false"
-						action="#{MainBean.moveToQuery}" />
 
-					<p:commandButton style="margin:15px; padding:3px"  value="Login" immediate="false"
-						action="#{MainBean.moveToLogin}" />
+					<p:commandButton style="margin:15px; padding:3px"
+						value="Query Questions" immediate="false"
+						action="#{LogedAdminMainBean.moveToQuery}" />
 
+					<p:commandButton style="margin:15px; padding:3px"
+						value="Create Event" immediate="false"
+						action="#{LogedAdminMainBean.moveToCreateEvent}" />
 
-					<p:commandButton style="margin:15px; padding:3px"  value="Register" immediate="false"
-						action="#{MainBean.moveToRegister}" />
-						
-						<p:commandButton style="margin:15px; padding:3px"  value="Show Events" immediate="false"
-						action="#{MainBean.moveToShowEvents}" />
+					<p:commandButton style="margin:15px; padding:3px"
+						value="Create Questions" immediate="false"
+						action="#{LogedAdminMainBean.moveToCreate}" />
+
+					<p:commandButton style="margin:15px; padding:3px" value="Logout"
+						immediate="false" action="#{LoginBean.logOut}" />
 				</div>
 			</h:form>
 		</div>

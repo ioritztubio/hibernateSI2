@@ -3,11 +3,16 @@
 <faces-config
     xmlns="http://java.sun.com/xml/ns/javaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
     version="2.0">
 	<managed-bean>
 		<managed-bean-name>MainBean</managed-bean-name>
 		<managed-bean-class>eredua.bean.MainBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>LoginBean</managed-bean-name>
+		<managed-bean-class>eredua.bean.LoginBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
@@ -16,8 +21,18 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
+		<managed-bean-name>CreateEventBean</managed-bean-name>
+		<managed-bean-class>eredua.bean.CreateEventBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
 		<managed-bean-name>QueryQuestionsBean</managed-bean-name>
 		<managed-bean-class>eredua.bean.QueryQuestionsBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>ShowEventsBean</managed-bean-name>
+		<managed-bean-class>eredua.bean.ShowEventsBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
@@ -26,32 +41,26 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>loginBean</managed-bean-name>
-		<managed-bean-class>eredua.bean.LoginBean</managed-bean-class>
+		<managed-bean-name>LogedMainBean</managed-bean-name>
+		<managed-bean-class>eredua.bean.LogedMainBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>RegisterBean</managed-bean-name>
+		<managed-bean-class>eredua.bean.RegisterBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>LogedAdminMainBean</managed-bean-name>
+		<managed-bean-class>eredua.bean.LogedAdminMainBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>
 		<display-name>Main.xhtml</display-name>
 		<from-view-id>/Main.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>CreateQuestion</from-outcome>
-			<to-view-id>/CreateQuestions.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>Main.xhtml</display-name>
-		<from-view-id>/Main.xhtml</from-view-id>
-		<navigation-case>
 			<from-outcome>QueryQuestion</from-outcome>
 			<to-view-id>/QueryQuestions.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>CreateQuestions.xhtml</display-name>
-		<from-view-id>/CreateQuestions.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>back</from-outcome>
-			<to-view-id>/Main.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -63,8 +72,16 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>Login.xhtml</display-name>
-		<from-view-id>/Login.xhtml</from-view-id>
+		<display-name>LogedMain.xhtml</display-name>
+		<from-view-id>/LogedMain.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>Main</from-outcome>
+			<to-view-id>/Main.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Register.xhtml</display-name>
+		<from-view-id>/Register.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>Main</from-outcome>
 			<to-view-id>/Main.xhtml</to-view-id>
@@ -78,5 +95,46 @@
 			<to-view-id>/Login.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>ShowEvents.xhtml</display-name>
+		<from-view-id>/ShowEvents.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>Events</from-outcome>
+			<to-view-id>/Events.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Register.xhtml</display-name>
+		<from-view-id>/Register.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>LogedMain</from-outcome>
+			<to-view-id>/LogedMain.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Register.xhtml</display-name>
+		<from-view-id>/Register.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>LogedAdminMain</from-outcome>
+			<to-view-id>/LogedAdminMain.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Main.xhtml</display-name>
+		<from-view-id>/Main.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ShowEvents</from-outcome>
+			<to-view-id>/ShowEvents.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>LogedAdminMain.xhtml</display-name>
+		<from-view-id>/LogedAdminMain.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>Main</from-outcome>
+			<to-view-id>/Main.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
 
 </faces-config>

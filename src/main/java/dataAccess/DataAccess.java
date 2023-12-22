@@ -11,7 +11,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -21,8 +20,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import configuration.UtilDate;
-import domain.Event;
-import domain.Question;
+import domain.*;
 import eredua.HibernateUtil;
 import exceptions.QuestionAlreadyExist;
 
@@ -30,6 +28,8 @@ import exceptions.QuestionAlreadyExist;
  * It implements the data access to the objectsession database
  */
 public class DataAccess {
+
+	private Query setParameter;
 
 	public DataAccess() {
 	}
@@ -55,29 +55,32 @@ public class DataAccess {
 				month = 0;
 				year += 1;
 			}
-			/*
-			Event ev1 = new Event( "Atlético-Athletic", UtilDate.newDate(year, month, 17));
-			Event ev2 = new Event( "Eibar-Barcelona", UtilDate.newDate(year, month, 17));
-			Event ev3 = new Event( "Getafe-Celta", UtilDate.newDate(year, month, 17));
-			Event ev4 = new Event( "Alavés-Deportivo", UtilDate.newDate(year, month, 17));
-			Event ev5 = new Event( "Español-Villareal", UtilDate.newDate(year, month, 17));
-			Event ev6 = new Event( "Las Palmas-Sevilla", UtilDate.newDate(year, month, 17));
-			Event ev7 = new Event( "Malaga-Valencia", UtilDate.newDate(year, month, 17));
-			Event ev8 = new Event( "Girona-Leganés", UtilDate.newDate(year, month, 17));
-			Event ev9 = new Event( "Real Sociedad-Levante", UtilDate.newDate(year, month, 17));
-			Event ev10 = new Event( "Betis-Real Madrid", UtilDate.newDate(year, month, 17));
+			Client c1 = new Client("client1", "pss", false);
+
+			session.persist(c1);
+
+			Event ev1 = new Event("Atlético-Athletic", UtilDate.newDate(year, month, 17));
+			Event ev2 = new Event("Eibar-Barcelona", UtilDate.newDate(year, month, 17));
+			Event ev3 = new Event("Getafe-Celta", UtilDate.newDate(year, month, 17));
+			Event ev4 = new Event("Alavés-Deportivo", UtilDate.newDate(year, month, 17));
+			Event ev5 = new Event("Español-Villareal", UtilDate.newDate(year, month, 17));
+			Event ev6 = new Event("Las Palmas-Sevilla", UtilDate.newDate(year, month, 17));
+			Event ev7 = new Event("Malaga-Valencia", UtilDate.newDate(year, month, 17));
+			Event ev8 = new Event("Girona-Leganés", UtilDate.newDate(year, month, 17));
+			Event ev9 = new Event("Real Sociedad-Levante", UtilDate.newDate(year, month, 17));
+			Event ev10 = new Event("Betis-Real Madrid", UtilDate.newDate(year, month, 17));
 
 			Event ev11 = new Event("Atletico-Athletic", UtilDate.newDate(year, month, 1));
-			Event ev12 = new Event( "Eibar-Barcelona", UtilDate.newDate(year, month, 1));
-			Event ev13 = new Event( "Getafe-Celta", UtilDate.newDate(year, month, 1));
-			Event ev14 = new Event( "Alavés-Deportivo", UtilDate.newDate(year, month, 1));
-			Event ev15 = new Event( "Español-Villareal", UtilDate.newDate(year, month, 1));
-			Event ev16 = new Event( "Las Palmas-Sevilla", UtilDate.newDate(year, month, 1));
+			Event ev12 = new Event("Eibar-Barcelona", UtilDate.newDate(year, month, 1));
+			Event ev13 = new Event("Getafe-Celta", UtilDate.newDate(year, month, 1));
+			Event ev14 = new Event("Alavés-Deportivo", UtilDate.newDate(year, month, 1));
+			Event ev15 = new Event("Español-Villareal", UtilDate.newDate(year, month, 1));
+			Event ev16 = new Event("Las Palmas-Sevilla", UtilDate.newDate(year, month, 1));
 
-			Event ev17 = new Event( "Málaga-Valencia", UtilDate.newDate(year, month, 28));
-			Event ev18 = new Event( "Girona-Leganés", UtilDate.newDate(year, month, 28));
-			Event ev19 = new Event( "Real Sociedad-Levante", UtilDate.newDate(year, month, 28));
-			Event ev20 = new Event( "Betis-Real Madrid", UtilDate.newDate(year, month, 28));
+			Event ev17 = new Event("Málaga-Valencia", UtilDate.newDate(year, month, 28));
+			Event ev18 = new Event("Girona-Leganés", UtilDate.newDate(year, month, 28));
+			Event ev19 = new Event("Real Sociedad-Levante", UtilDate.newDate(year, month, 28));
+			Event ev20 = new Event("Betis-Real Madrid", UtilDate.newDate(year, month, 28));
 
 			Question q1;
 			Question q2;
@@ -85,9 +88,6 @@ public class DataAccess {
 			Question q4;
 			Question q5;
 			Question q6;
-			
-			
-	
 
 			if (Locale.getDefault().equals(new Locale("es"))) {
 				q1 = ev1.addQuestion("¿Quién ganará el partido?", 1);
@@ -112,7 +112,6 @@ public class DataAccess {
 				q6 = ev17.addQuestion("Golak sartuko dira lehenengo zatian?", 2);
 
 			}
-
 
 			session.persist(q1);
 			session.persist(q2);
@@ -143,7 +142,7 @@ public class DataAccess {
 			session.persist(ev20);
 
 			session.getTransaction().commit();
-			*/
+
 			System.out.println("session initialized");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -175,7 +174,10 @@ public class DataAccess {
 		Event ev = (Event) query.uniqueResult();
 
 		if (ev.DoesQuestionExists(question))
-			throw new QuestionAlreadyExist("ErrorQueryAlreadyExist");/*ResourceBundle.getBundle("Etiquetas").getString("ErrorQueryAlreadyExist"));*/
+			throw new QuestionAlreadyExist("ErrorQueryAlreadyExist");/*
+																		 * ResourceBundle.getBundle("Etiquetas").
+																		 * getString("ErrorQueryAlreadyExist"));
+																		 */
 
 		session.getTransaction().begin();
 		Question q = ev.addQuestion(question, betMinimum);
@@ -248,6 +250,120 @@ public class DataAccess {
 		q.setParameter("evNumber", event.getEventNumber());
 		Event ev = (Event) q.uniqueResult();
 		return ev.DoesQuestionExists(question);
+
+	}
+
+	/**
+	 * This method helps to know if that userName has been loged before.
+	 * 
+	 * @param userName
+	 * @param password
+	 * @return true if it's in the data base.
+	 */
+	public boolean isLogin(String userName) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		boolean found = false;
+		Query query = session.createQuery("SELECT c.userName FROM Client c WHERE c.userName= :uName");
+		query.setParameter("uName", userName);
+		if (query.uniqueResult() != null) {
+			found = true;
+		}
+
+		session.getTransaction();
+		return found;
+	}
+
+	/**
+	 * This method is used to know user's kind of register.
+	 * 
+	 * @param userName
+	 * @return isAdmin (true / false)
+	 */
+	public boolean isAdmin(String userName) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		boolean admin = false;
+		Query query = session.createQuery("SELECT c.admin FROM Client c WHERE c.userName= :uName");
+		query.setParameter("uName", userName);
+		admin = (Boolean) query.uniqueResult();
+		return admin;
+	}
+
+	/**
+	 * This method verify user logs password.
+	 * 
+	 * @param userName
+	 * @param userPass
+	 * @return signIn (true / false)
+	 */
+	public boolean tryLog(String userName, String userPass) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		boolean signIn = false;
+		Query query = session.createQuery("SELECT c.password FROM Client c WHERE c.userName = :uName");
+		query.setParameter("uName", userName);
+		System.out.println("0" + userName);
+		System.out.println("1" + userPass);
+		System.out.println("2" + (String) query.uniqueResult());
+		if (userPass.equals((String) query.uniqueResult())) {
+			System.out.println((String) query.uniqueResult());
+			signIn = true;
+			return signIn;
+		}
+		return signIn;
+	}
+
+	/**
+	 * This method is used to create an event.
+	 * 
+	 * @param description
+	 * @param eventDate
+	 * @throws EventAlreadyExist
+	 */
+	public boolean createEvent(String description, Date eventDate) {
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Query query = session.createQuery("SELECT e FROM Event e WHERE e.description= :desc AND e.eventDate= :date");
+		query.setParameter("desc", description);
+		query.setParameter("date", eventDate);
+		System.out.println(query.uniqueResult());
+		if ((query.uniqueResult() == null)) {
+
+			Event berria = new Event(description, eventDate);
+			session.getTransaction().begin();
+			session.persist(berria);
+			session.getTransaction().commit();
+			return true;
+		} else {
+
+			System.out.println("Gertaera sortuta bazegoen");
+			return false;
+		}
+
+	}
+
+	/**
+	 * This method is used to register people in the data base.
+	 * 
+	 * @param userName
+	 * @param password
+	 */
+	public void register(String userName, String password, boolean admin) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Client c = new Client(userName, password, admin);
+		System.out.print(userName);
+
+		try {
+
+			session.persist(c);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		session.getTransaction().commit();
 
 	}
 

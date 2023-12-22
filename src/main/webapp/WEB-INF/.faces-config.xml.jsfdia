@@ -3,22 +3,13 @@
  <PROCESS-ITEM NAME="rules:#Main.xhtml" PATH="/Main.xhtml"
   SHAPE="256,184,50,57" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#Main.xhtml:0" NAME="item" PATH="/Main.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="CreateQuestion::#CreateQuestions.xhtml"
-    NAME="output" PATH="/CreateQuestions.xhtml"
-    TARGET="rules:#CreateQuestions.xhtml" TITLE="CreateQuestion" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
-  <PROCESS-ITEM ID="rules:#Main.xhtml:1" NAME="item1" PATH="/Main.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="QueryQuestion::#QueryQuestions.xhtml"
     NAME="output" PATH="/QueryQuestions.xhtml"
     TARGET="rules:#QueryQuestions.xhtml" TITLE="QueryQuestion" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
- </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#CreateQuestions.xhtml"
-  PATH="/CreateQuestions.xhtml" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#CreateQuestions.xhtml:0" NAME="item"
-   PATH="/CreateQuestions.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="back::#Main.xhtml" NAME="output"
-    PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="back" model-entity="JSFProcessItemOutput"/>
+  <PROCESS-ITEM ID="rules:#Main.xhtml:1" NAME="item1" PATH="/Main.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="Login::#Login.xhtml" NAME="output"
+    PATH="/Login.xhtml" TARGET="rules:#Login.xhtml" TITLE="Login" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#QueryQuestions.xhtml"
@@ -29,4 +20,52 @@
     PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="back" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#LogedMain.xhtml" PATH="/LogedMain.xhtml"
+  SHAPE="272,289,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#LogedMain.xhtml:0" NAME="item"
+   PATH="/LogedMain.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="Main::#Main.xhtml" NAME="output"
+    PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="Main" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Register.xhtml" PATH="/Register.xhtml"
+  SHAPE="32,273,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#Register.xhtml:0" NAME="item"
+   PATH="/Register.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="Main::#Main.xhtml" NAME="output"
+    PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="Main" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#Register.xhtml:1" NAME="item1"
+   PATH="/Register.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="LogedMain::#LogedMain.xhtml" NAME="output"
+    PATH="/LogedMain.xhtml" TARGET="rules:#LogedMain.xhtml"
+    TITLE="LogedMain" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#Register.xhtml:2" NAME="item2"
+   PATH="/Register.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="LogedAdminMain::#LogedAdminMain.xhtml"
+    NAME="output" PATH="/LogedAdminMain.xhtml"
+    TARGET="rules:#LogedAdminMain.xhtml" TITLE="LogedAdminMain" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#LogedAdminMain.xhtml"
+  PATH="/LogedAdminMain.xhtml" SHAPE="288,465,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#LogedAdminMain.xhtml:0" NAME="item"
+   PATH="/LogedAdminMain.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="Main::#Main.xhtml" NAME="output"
+    PATH="/Main.xhtml" TARGET="rules:#Main.xhtml" TITLE="Main" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Login.xhtml" PATH="/Login.xhtml"
+  SHAPE="512,129,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ShowEvents.xhtml" PATH="/ShowEvents.xhtml"
+  SHAPE="32,673,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#ShowEvents.xhtml:0" NAME="item"
+   PATH="/ShowEvents.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="Events::#Events.xhtml" NAME="output"
+    PATH="/Events.xhtml" TARGET="rules:#Events.xhtml" TITLE="Events" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#Events.xhtml" PATH="/Events.xhtml"
+  SHAPE="240,689,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
